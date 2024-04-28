@@ -10,3 +10,4 @@ and the create a zip for all the files
 
 ## todo:
 * Have alarms for lambda failures
+* Have alarms for lambda execution failures

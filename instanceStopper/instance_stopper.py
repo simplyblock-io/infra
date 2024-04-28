@@ -37,7 +37,8 @@ def stop_instances(aws_region: str) -> List[str]:
     return instances_to_stop
 
 def send_slack(region, stopped):
-    message = f"region: {region}. Stopping instances: {stopped} as they are running for more than 12 hours"
+
+    message = f"region: `{region}`\n Stopping instances: {stopped} as they are running for more than 12 hours"
     slack_webhook_url = os.environ.get("SLACK_WEBHOOK")
     data = {
         "text": message
@@ -51,8 +52,9 @@ def send_slack(region, stopped):
 
 def lambda_handler(event, context):
 
-    supported_region = ['us-east-1', 'us-east-2', 'us-west-1', 'us-west-2']
+    supported_region = ['us-east-1', 'us-east-2', 'us-west-1', 'us-west-2', 'eu-west-1', 'eu-west-2', 'eu-west-3', 'eu-north-1', 'eu-central-1']
     for region in supported_region:
+        print('checking region: ', region)
         stopped = stop_instances(region)
         if len(stopped) > 0:
             send_slack(region, stopped, )

@@ -22,7 +22,7 @@ resource "aws_lambda_function" "instance_stopper" {
   source_code_hash = filebase64sha256("${path.module}/instanceStopper/instance_stopper.zip")
 
   role    = aws_iam_role.lambda_exec_role.arn
-  timeout = 20
+  timeout = 120 # 2 mins
   environment {
     variables = {
       SLACK_WEBHOOK = var.slack_webhook
