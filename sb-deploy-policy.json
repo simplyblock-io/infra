@@ -111,7 +111,7 @@
 				"iam:RemoveRoleFromInstanceProfile",
 				"iam:DeletePolicy",
 				"iam:ChangePassword",
-				"iam:CreateServiceLinkedRole",
+				"iam:CreateServiceLinkedRole"
 				
 			],
 			"Resource": "*"
