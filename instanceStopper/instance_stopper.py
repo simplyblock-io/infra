@@ -22,7 +22,7 @@ def stop_instances(aws_region: str) -> List[str]:
                     long_term_test = False
                     if 'Tags' in instance:
                         for tag in instance['Tags']:
-                            if tag['Key'] == 'long-term-test' and tag['Value'].lower() == 'true':
+                            if tag['Key'].strip() == 'long-term-test' and tag['Value'].lower() == 'true':
                                 long_term_test = True
                                 break
                     if not long_term_test:
@@ -30,14 +30,17 @@ def stop_instances(aws_region: str) -> List[str]:
 
     if instances_to_stop:
         print(f"Stopping instances: {instances_to_stop}")
-        ec2.stop_instances(InstanceIds=instances_to_stop)
+        try:
+            ec2.stop_instances(InstanceIds=instances_to_stop)
+        except Exception as e:
+            print(f"Exception when trying to stop instances: {e}")
     else:
         print("No instances meet the criteria for stopping.")
 
     return instances_to_stop
 
 def send_slack(region, stopped):
-
+    
     message = f"region: `{region}`\n Stopping instances: {stopped} as they are running for more than 12 hours"
     slack_webhook_url = os.environ.get("SLACK_WEBHOOK")
     data = {
