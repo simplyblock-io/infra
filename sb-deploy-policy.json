@@ -115,7 +115,13 @@
 				"iam:AddRoleToInstanceProfile",
 				"iam:RemoveRoleFromInstanceProfile",
 				"iam:DeletePolicy",
-				"iam:ChangePassword"
+				"iam:ChangePassword",
+				"iam:CreateAccessKey",
+		                "iam:ListAccessKeys",
+		                "iam:GetUser",
+		                "iam:UpdateAccessKey",
+		                "iam:DeleteAccessKey",
+		                "iam:GetAccessKeyLastUsed"
 			],
 			"Resource": "*"
 		},
