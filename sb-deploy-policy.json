@@ -121,7 +121,8 @@
 		                "iam:GetUser",
 		                "iam:UpdateAccessKey",
 		                "iam:DeleteAccessKey",
-		                "iam:GetAccessKeyLastUsed"
+		                "iam:GetAccessKeyLastUsed",
+				"iam:CreateServiceLinkedRole"
 			],
 			"Resource": "*"
 		},
@@ -194,6 +195,21 @@
 				"apigateway:*"
 			],
 			"Resource": "arn:aws:apigateway:*::/*"
+		},
+		{
+		      "Effect": "Allow",
+		      "Action": [
+			"elasticloadbalancing:DescribeLoadBalancers",
+			"elasticloadbalancing:DescribeTargetGroups",
+			"elasticloadbalancing:DescribeListeners",
+			"elasticloadbalancing:CreateLoadBalancer",
+			"elasticloadbalancing:DeleteLoadBalancer",
+			"elasticloadbalancing:CreateTargetGroup",
+			"elasticloadbalancing:DeleteTargetGroup",
+			"elasticloadbalancing:CreateListener",
+			"elasticloadbalancing:DeleteListener"
+		      ],
+		      "Resource": "*"
 		},
 		{
 			"Sid": "VisualEditor0",
