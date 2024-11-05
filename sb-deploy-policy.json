@@ -199,15 +199,7 @@
 		{
 		      "Effect": "Allow",
 		      "Action": [
-			"elasticloadbalancing:DescribeLoadBalancers",
-			"elasticloadbalancing:DescribeTargetGroups",
-			"elasticloadbalancing:DescribeListeners",
-			"elasticloadbalancing:CreateLoadBalancer",
-			"elasticloadbalancing:DeleteLoadBalancer",
-			"elasticloadbalancing:CreateTargetGroup",
-			"elasticloadbalancing:DeleteTargetGroup",
-			"elasticloadbalancing:CreateListener",
-			"elasticloadbalancing:DeleteListener"
+                              "elasticloadbalancing:*"
 		      ],
 		      "Resource": "*"
 		},
