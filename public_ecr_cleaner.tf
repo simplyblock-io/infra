@@ -33,23 +33,6 @@ resource "aws_iam_role" "publci_ecr_cleaner_lambda_exec_role" {
       },
     ]
   })
-
-  inline_policy {
-    policy = jsonencode({
-      Version = "2012-10-17"
-      Statement = [
-        {
-          Action = [
-            "ecr-public:DescribeRepositories",
-            "ecr-public:DescribeImages",
-            "ecr-public:BatchDeleteImage"
-          ]
-          Effect : "Allow"
-          Resource : "*"
-        }
-      ]
-    })
-  }
 }
 
 resource "aws_iam_policy" "public_ecr_cleaner_policy" {
@@ -62,7 +45,10 @@ resource "aws_iam_policy" "public_ecr_cleaner_policy" {
         Action = [
         "ecr-public:DescribeRepositories",
         "ecr-public:DescribeImages",
-        "ecr-public:BatchDeleteImage"
+        "ecr-public:BatchDeleteImage",
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
         ]
         Effect : "Allow"
         Resource : "*"

@@ -32,22 +32,6 @@ resource "aws_iam_role" "instance_stopper_lambda_exec_role" {
       },
     ]
   })
-
-  inline_policy {
-    policy = jsonencode({
-      Version = "2012-10-17"
-      Statement = [
-        {
-          Action = [
-            "ec2:DescribeInstances",
-            "ec2:StopInstances",
-          ]
-          Effect : "Allow"
-          Resource : "*"
-        }
-      ]
-    })
-  }
 }
 
 resource "aws_iam_policy" "instance_stopper_policy" {
@@ -60,6 +44,9 @@ resource "aws_iam_policy" "instance_stopper_policy" {
         Action = [
           "ec2:DescribeInstances",
           "ec2:StopInstances",
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
         ]
         Effect : "Allow"
         Resource : "*"
